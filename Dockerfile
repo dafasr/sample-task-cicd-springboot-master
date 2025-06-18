@@ -1,48 +1,35 @@
-# Multi-stage build for Spring Boot application
-FROM maven:3.9.4-openjdk-17-slim AS build
+# --- Tahap 1: Build ---
+# Menggunakan image Maven resmi untuk membangun artefak aplikasi (.jar)
+# 'AS build' menamai tahap ini sebagai 'build'
+FROM maven:3.9.6-eclipse-temurin-17-focal AS build
 
-# Set working directory
+# Menentukan direktori kerja di dalam container
 WORKDIR /app
 
-# Copy pom.xml first for better layer caching
+# Menyalin file pom.xml untuk men-download dependensi terlebih dahulu
+# Ini memanfaatkan cache layer Docker, sehingga dependensi tidak di-download ulang setiap kali ada perubahan kode
 COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# Download dependencies
-RUN mvn dependency:go-offline -B
-
-# Copy source code
+# Menyalin seluruh source code proyek
 COPY src ./src
 
-# Build the application
-RUN mvn clean package -DskipTests
+# Menjalankan proses build dan packaging aplikasi menjadi file .jar
+# -DskipTests digunakan untuk mempercepat proses build di Docker
+RUN mvn package -DskipTests
 
-# Runtime stage
+# --- Tahap 2: Run ---
+# Menggunakan image OpenJDK yang jauh lebih ringan untuk menjalankan aplikasi
 FROM openjdk:17-jdk-slim
 
-# Set working directory
+# Menentukan direktori kerja
 WORKDIR /app
 
-# Create non-root user for security
-RUN groupadd -r appuser && useradd -r -g appuser appuser
+# Menyalin file .jar yang sudah di-build dari tahap 'build'
+COPY --from=build /app/target/*.jar app.jar
 
-# Copy the built JAR from build stage
-COPY --from=build /app/target/spring-boot-api-*.jar app.jar
-
-# Change ownership of the app directory to appuser
-RUN chown -R appuser:appuser /app
-
-# Switch to non-root user
-USER appuser
-
-# Expose port
+# Memberi tahu Docker bahwa container akan listen pada port 8080
 EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:8080/api/users/health || exit 1
-
-# JVM optimization arguments
-ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Djava.security.egd=file:/dev/./urandom"
-
-# Run the application
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"] 
+# Perintah untuk menjalankan aplikasi saat container dimulai
+ENTRYPOINT ["java", "-jar", "app.jar"]
