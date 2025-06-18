@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-app-service
+spec:
+  # Tipe ClusterIP berarti service ini hanya bisa diakses dari DALAM klaster Kubernetes.
+  # Ini adalah tipe yang paling umum jika Anda akan menggunakan Ingress.
+  type: ClusterIP
+  selector:
+    # Meneruskan traffic ke semua Pod yang memiliki label 'app: demo-springboot'
+    app: demo-springboot
+  ports:
+    - protocol: TCP
+      # Port yang diekspos oleh Service ini
+      port: 80
+      # Port pada container yang akan menerima traffic (harus sama dengan containerPort di Deployment)
+      targetPort: 8080

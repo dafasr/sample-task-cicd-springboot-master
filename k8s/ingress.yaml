@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-app-ingress
+  annotations:
+    # Anotasi ini spesifik untuk NGINX Ingress Controller.
+    # Mungkin berbeda jika Anda menggunakan controller lain (Traefik, GKE Ingress, dll).
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    # Aturan routing berdasarkan nama domain
+    - host: "app.domainanda.com" # GANTI DENGAN DOMAIN ANDA
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                # Nama service yang akan menerima traffic
+                name: demo-app-service
+                port:
+                  # Port service yang dituju
+                  number: 80

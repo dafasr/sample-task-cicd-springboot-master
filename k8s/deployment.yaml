@@ -1,0 +1,239 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deployment
+  labels:
+    app: demo-springboot
+spec:
+  # Menjalankan 2 replika untuk high availability
+  replicas: 2
+  selector:
+    matchLabels:
+      # Selector ini harus cocok dengan label di template pod
+      app: demo-springboot
+  template:
+    metadata:
+      labels:
+        # Memberi label pada pod agar bisa ditemukan oleh Service
+        app: demo-springboot
+    spec:
+      containers:
+      - name: springboot-container
+        # PENTING: Ganti dengan nama image Anda di Docker Hub
+        # Placeholder ini nantinya akan diganti oleh skrip CI/CD
+        image: your-dockerhub-username/demo-springboot:latest
+        ports:
+        # Port yang diekspos oleh aplikasi di dalam container (sesuai Dockerfile)
+        - containerPort: 8080
+        # Best practice: definisikan kebutuhan resource
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m" # 0.25 core
+          limits:
+            memory: "1Gi"
+            cpu: "500m" # 0.5 coreapiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deployment
+  labels:
+    app: demo-springboot
+spec:
+  # Menjalankan 2 replika untuk high availability
+  replicas: 2
+  selector:
+    matchLabels:
+      # Selector ini harus cocok dengan label di template pod
+      app: demo-springboot
+  template:
+    metadata:
+      labels:
+        # Memberi label pada pod agar bisa ditemukan oleh Service
+        app: demo-springboot
+    spec:
+      containers:
+      - name: springboot-container
+        # PENTING: Ganti dengan nama image Anda di Docker Hub
+        # Placeholder ini nantinya akan diganti oleh skrip CI/CD
+        image: your-dockerhub-username/demo-springboot:latest
+        ports:
+        # Port yang diekspos oleh aplikasi di dalam container (sesuai Dockerfile)
+        - containerPort: 8080
+        # Best practice: definisikan kebutuhan resource
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m" # 0.25 core
+          limits:
+            memory: "1Gi"
+            cpu: "500m" # 0.5 coreapiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deployment
+  labels:
+    app: demo-springboot
+spec:
+  # Menjalankan 2 replika untuk high availability
+  replicas: 2
+  selector:
+    matchLabels:
+      # Selector ini harus cocok dengan label di template pod
+      app: demo-springboot
+  template:
+    metadata:
+      labels:
+        # Memberi label pada pod agar bisa ditemukan oleh Service
+        app: demo-springboot
+    spec:
+      containers:
+      - name: springboot-container
+        # PENTING: Ganti dengan nama image Anda di Docker Hub
+        # Placeholder ini nantinya akan diganti oleh skrip CI/CD
+        image: your-dockerhub-username/demo-springboot:latest
+        ports:
+        # Port yang diekspos oleh aplikasi di dalam container (sesuai Dockerfile)
+        - containerPort: 8080
+        # Best practice: definisikan kebutuhan resource
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m" # 0.25 core
+          limits:
+            memory: "1Gi"
+            cpu: "500m" # 0.5 coreapiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deployment
+  labels:
+    app: demo-springboot
+spec:
+  # Menjalankan 2 replika untuk high availability
+  replicas: 2
+  selector:
+    matchLabels:
+      # Selector ini harus cocok dengan label di template pod
+      app: demo-springboot
+  template:
+    metadata:
+      labels:
+        # Memberi label pada pod agar bisa ditemukan oleh Service
+        app: demo-springboot
+    spec:
+      containers:
+      - name: springboot-container
+        # PENTING: Ganti dengan nama image Anda di Docker Hub
+        # Placeholder ini nantinya akan diganti oleh skrip CI/CD
+        image: your-dockerhub-username/demo-springboot:latest
+        ports:
+        # Port yang diekspos oleh aplikasi di dalam container (sesuai Dockerfile)
+        - containerPort: 8080
+        # Best practice: definisikan kebutuhan resource
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m" # 0.25 core
+          limits:
+            memory: "1Gi"
+            cpu: "500m" # 0.5 coreapiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deployment
+  labels:
+    app: demo-springboot
+spec:
+  # Menjalankan 2 replika untuk high availability
+  replicas: 2
+  selector:
+    matchLabels:
+      # Selector ini harus cocok dengan label di template pod
+      app: demo-springboot
+  template:
+    metadata:
+      labels:
+        # Memberi label pada pod agar bisa ditemukan oleh Service
+        app: demo-springboot
+    spec:
+      containers:
+      - name: springboot-container
+        # PENTING: Ganti dengan nama image Anda di Docker Hub
+        # Placeholder ini nantinya akan diganti oleh skrip CI/CD
+        image: your-dockerhub-username/demo-springboot:latest
+        ports:
+        # Port yang diekspos oleh aplikasi di dalam container (sesuai Dockerfile)
+        - containerPort: 8080
+        # Best practice: definisikan kebutuhan resource
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m" # 0.25 core
+          limits:
+            memory: "1Gi"
+            cpu: "500m" # 0.5 coreapiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deployment
+  labels:
+    app: demo-springboot
+spec:
+  # Menjalankan 2 replika untuk high availability
+  replicas: 2
+  selector:
+    matchLabels:
+      # Selector ini harus cocok dengan label di template pod
+      app: demo-springboot
+  template:
+    metadata:
+      labels:
+        # Memberi label pada pod agar bisa ditemukan oleh Service
+        app: demo-springboot
+    spec:
+      containers:
+      - name: springboot-container
+        # PENTING: Ganti dengan nama image Anda di Docker Hub
+        # Placeholder ini nantinya akan diganti oleh skrip CI/CD
+        image: your-dockerhub-username/demo-springboot:latest
+        ports:
+        # Port yang diekspos oleh aplikasi di dalam container (sesuai Dockerfile)
+        - containerPort: 8080
+        # Best practice: definisikan kebutuhan resource
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m" # 0.25 core
+          limits:
+            memory: "1Gi"
+            cpu: "500m" # 0.5 coreapiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deployment
+  labels:
+    app: demo-springboot
+spec:
+  # Menjalankan 2 replika untuk high availability
+  replicas: 2
+  selector:
+    matchLabels:
+      # Selector ini harus cocok dengan label di template pod
+      app: demo-springboot
+  template:
+    metadata:
+      labels:
+        # Memberi label pada pod agar bisa ditemukan oleh Service
+        app: demo-springboot
+    spec:
+      containers:
+      - name: springboot-container
+        # PENTING: Ganti dengan nama image Anda di Docker Hub
+        # Placeholder ini nantinya akan diganti oleh skrip CI/CD
+        image: your-dockerhub-username/demo-springboot:latest
+        ports:
+        # Port yang diekspos oleh aplikasi di dalam container (sesuai Dockerfile)
+        - containerPort: 8080
+        # Best practice: definisikan kebutuhan resource
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m" # 0.25 core
+          limits:
+            memory: "1Gi"
+            cpu: "500m" # 0.5 core
